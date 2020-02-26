@@ -90,11 +90,7 @@ img = np.zeros((64, 64))
 row = np.arange(0, 64)
 row = row/64
 print(row)
-
 img[:] = row
-
-# save our image as a "png" image
-cv2.imwrite("64_x_64.png", img, 1)
 
 while(True):
     cv2.imshow('Hola', img)
