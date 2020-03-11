@@ -22,7 +22,7 @@ def convolve(img, krn):
 
     #Frame
     height, width, depth = img.shape
-    framed = np.exp((height + 2*krad, width + 2*krad, depth))
+    framed = np.ones((height + 2*krad, width + 2*krad, depth))
     framed[krad:-krad, krad:-krad] = img
 
     #Filter
@@ -32,6 +32,8 @@ def convolve(img, krn):
             filtered[i, j] = (framed[i:i+ksize,j:j+ksize] * krn[:,:, np.newaxis]).sum(axis=(0,1))
 
     return filtered
+
+    
 
 def gaussianKernel(krad):
     
@@ -53,11 +55,9 @@ def gaussianKernel(krad):
 
     return krn
 
-
-
 def main():
-    img = cv2.imread("yaoi.jfif", cv2.IMREAD_COLOR)
-    cv2.imshow("Gaussian", gaussianKernel(100))
+    img = cv2.imread("zelda.jpeg", cv2.IMREAD_COLOR)
+    cv2.imshow("Gaussian", BoxFilter(img))
     cv2.imshow("Normal", img)
 
     k = cv2.waitKey(0)
